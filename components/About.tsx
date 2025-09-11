@@ -46,7 +46,7 @@ const About: React.FC = () => {
     <SectionCard>
       <div className="flex flex-col md:flex-row items-center gap-8">
         <img
-          src="/assets/profile.png"
+          src={`${import.meta.env.BASE_URL}/assets/profile.png`}
           alt="Nabin Bogati"
           className="w-40 h-40 rounded-full object-cover ring-4 ring-nepal-blue/50"
         />
@@ -87,7 +87,7 @@ const About: React.FC = () => {
               </a>
             </div>
             <a
-              href="/assets/NabinBogati.pdf"
+              href={`${import.meta.env.BASE_URL}/assets/NabinBogati.pdf`}
               download="NabinBogati.pdf"
               aria-label="Download CV"
               className="inline-flex items-center justify-center px-5 py-2.5 border border-transparent text-sm font-medium rounded-full shadow-lg text-white bg-nepal-blue hover:bg-nepal-blue-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nepal-blue dark:focus:ring-offset-slate-900 transition-all duration-300 hover:scale-105"
