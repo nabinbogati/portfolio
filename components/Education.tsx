@@ -3,8 +3,7 @@ import SectionCard from './SectionCard';
 
 const learningItems = [
   "JavaScript, TypeScript & React - Advancing towards full-stack development.",
-  "Design Patterns – Learning best practices for scalable system design.",
-  "Reading - “The power of now - Eckhart Tolle (Spiritual Growth)”"
+  "Design Patterns – Learning best practices for scalable system design."
 ];
 
 const Education: React.FC = () => {
