@@ -2,71 +2,44 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Personal Portfolio</title>
-        <script src="https://cdn.tailwindcss.com"></script>
+        <title>Nabin Bogati · Senior Backend Engineer</title>
+        <meta
+            name="description"
+            content="Nabin Bogati is a senior backend engineer from Kathmandu, Nepal with 7+ years of experience building real-time, scalable systems in Python, FastAPI, PostgreSQL and Redis."
+        />
+        <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://nabinbogati.com.np/" />
+        <meta property="og:title" content="Nabin Bogati · Senior Backend Engineer" />
+        <meta
+            property="og:description"
+            content="Senior backend engineer with 7+ years building real-time, scalable systems."
+        />
+        <meta property="og:image" content="https://nabinbogati.com.np/assets/profile.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+            rel="stylesheet"
+        />
         <script>
-            tailwind.config = {
-                darkMode: "class",
-                theme: {
-                    extend: {
-                        colors: {
-                            "nepal-red": {
-                                light: "#ef4444",
-                                DEFAULT: "#dc2626",
-                                dark: "#b91c1c",
-                            },
-                            "nepal-blue": {
-                                light: "#3b82f6",
-                                DEFAULT: "#2563eb",
-                                dark: "#1d4ed8",
-                            },
-                        },
-                        keyframes: {
-                            fadeIn: {
-                                "0%": {
-                                    opacity: 0,
-                                    transform: "translateY(10px)",
-                                },
-                                "100%": {
-                                    opacity: 1,
-                                    transform: "translateY(0)",
-                                },
-                            },
-                            modalIn: {
-                                "0%": {
-                                    opacity: 0,
-                                    transform: "translateY(20px) scale(0.95)",
-                                },
-                                "100%": {
-                                    opacity: 1,
-                                    transform: "translateY(0) scale(1)",
-                                },
-                            },
-                        },
-                        animation: {
-                            fadeIn: "fadeIn 0.5s ease-in-out",
-                            modalIn: "modalIn 0.3s ease-out",
-                        },
-                    },
-                },
-            };
-        </script>
-        <script type="importmap">
-            {
-                "imports": {
-                    "react": "https://aistudiocdn.com/react@^19.1.1",
-                    "react-dom": "https://aistudiocdn.com/react-dom@^19.1.1",
-                    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
-                    "react/": "https://aistudiocdn.com/react@^19.1.1/",
-                    "vite": "https://aistudiocdn.com/vite@^7.1.5",
-                    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.0.2"
+            // Apply the saved or system theme before first paint to avoid a flash.
+            (function () {
+                var theme;
+                try {
+                    theme = localStorage.getItem("theme");
+                } catch (e) {}
+                if (theme !== "light" && theme !== "dark") {
+                    theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
                 }
-            }
+                document.documentElement.classList.add(theme);
+            })();
         </script>
     </head>
-    <body class="bg-gray-100 dark:bg-slate-900 transition-colors duration-500">
+    <body>
         <div id="root"></div>
         <div id="modal-root"></div>
         <script type="module" src="/index.tsx"></script>

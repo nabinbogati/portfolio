@@ -1,204 +1,127 @@
-import React, { useState } from "react";
-import SectionCard from "./SectionCard";
-import Modal from "./Modal";
+import React from "react";
+import Section from "./Section";
+import Tag from "./Tag";
+import { Section as SectionId } from "../types";
+import { featuredProject, projects, Project } from "../data/profile";
 import { GitHubIcon } from "./icons/GitHubIcon";
 import { ExternalLinkIcon } from "./icons/ExternalLinkIcon";
 
-interface Project {
-  title: string;
-  description: string;
-  detailedDescription: string;
-  imageUrl: string;
-  tags: string[];
-  links: {
-    github?: string;
-    live?: string;
-  };
-  type: "professional" | "personal" | "office";
-}
+const linkClass =
+  "inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 underline-offset-4 hover:text-accent-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 rounded dark:text-zinc-300 dark:hover:text-accent-400";
 
-const projects: Project[] = [
-  {
-    title: "Multiplayer Game Backend",
-    description:
-      "Architected a scalable backend for large-scale online games, ensuring high availability and low latency for thousands of concurrent users.",
-    detailedDescription:
-      "This project involved designing and implementing a robust backend system capable of handling thousands of concurrent connections for a real-time multiplayer game. The architecture was built using Python and Flask, with a PostgreSQL database for persistent data storage and Redis for caching and managing session data. Key challenges included optimizing network latency, ensuring data consistency, and creating a scalable infrastructure on DigitalOcean to support a growing user base.",
-    imageUrl:
-      "https://play-lh.googleusercontent.com/98wVaNrNvDGkmz5MwtrHkpNVgtUnKaMSqntl5ZVAMzYR0z4IXADMPN8Rq-3MtvfQ-m6s=w240-h480-rw",
-    tags: [
-      "Backend",
-      "Python",
-      "FastAPI",
-      "AioHttp",
-      "WebSockets",
-      "PostgreSQL",
-      "Scalability",
-    ],
-    links: {
-      live: "https://play.google.com/store/apps/details?id=io.teslatech.callbreak&hl=en",
-    },
-    type: "professional",
-  },
-  {
-    title: "Tic-Tac-Toe Game",
-    description:
-      "A classic Tic-Tac-Toe game implemented in Python, playable in the command line.",
-    detailedDescription:
-      "A fun personal project to implement the classic game of Tic-Tac-Toe in Python. This project focuses on core programming logic, including game state management, player input handling, and win/draw condition checking. It's a great exercise in fundamental programming concepts and runs entirely in the command-line interface.",
-    imageUrl: "./assets/projects/tic-tac-toe.png",
-    tags: ["Python", "CLI", "Game"],
-    links: {
-      github: "https://github.com/nabinbogati/tic-tac-toe",
-    },
-    type: "personal",
-  },
-  {
-    title: "Dotfiles",
-    description:
-      "My personal configuration files for tools like bash, vim, and git to streamline my development workflow.",
-    detailedDescription:
-      "This repository contains my personal 'dotfiles,' which are the configuration files for various command-line tools I use daily, including my shell (Bash), text editor (Vim), and version control system (Git). Maintaining these files in a repository allows me to easily set up my preferred development environment on any new machine and keep my configurations consistent.",
-    imageUrl: "./assets/projects/dotfiles.png",
-    tags: ["Shell", "Vim", "Config", "Linux"],
-    links: {
-      github: "https://github.com/nabinbogati/dotfiles",
-    },
-    type: "personal",
-  },
-];
-
-const Projects: React.FC = () => {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  const professionalProjects = projects.filter(
-    (p) => p.type === "professional",
-  );
-  const personalProjects = projects.filter((p) => p.type === "personal");
-
-  const renderProjectCard = (project: Project, index: number) => {
-    return (
-      <button
-        key={index}
-        onClick={() => setSelectedProject(project)}
-        className="text-left rounded-lg overflow-hidden shadow-lg bg-slate-100 dark:bg-slate-800/80 transform hover:-translate-y-2 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nepal-blue dark:focus:ring-offset-slate-900 w-full"
-        aria-label={`View details for ${project.title}`}
-      >
-        <div className="relative">
-          <img
-            src={project.imageUrl}
-            alt={project.title}
-            className="w-full h-56 object-cover"
-          />
-        </div>
-        <div className="p-6">
-          <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-            {project.title}
-          </h3>
-          <p className="mt-2 text-slate-600 dark:text-slate-300 h-24">
-            {project.description}
-          </p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="px-2 py-1 text-xs font-semibold text-nepal-blue-dark dark:text-nepal-blue-light bg-nepal-blue/10 rounded-full"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      </button>
-    );
-  };
+const ProjectLinks: React.FC<{ project: Project }> = ({ project }) => {
+  const { github, live } = project.links;
+  if (!github && !live) return null;
 
   return (
-    <>
-      <SectionCard>
-        {personalProjects.length > 0 && (
-          <div className="mb-12">
-            <div className="text-center">
-              <h3 className="inline-block text-2xl font-bold mb-6 text-slate-800 dark:text-slate-100 border-b-2 border-nepal-blue/30 pb-2">
-                Personal Projects
-              </h3>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {personalProjects.map(renderProjectCard)}
-            </div>
-          </div>
-        )}
+    <div className="flex flex-wrap items-center gap-5">
+      {live && (
+        <a href={live} target="_blank" rel="noopener noreferrer" className={linkClass}>
+          <ExternalLinkIcon className="h-4 w-4" />
+          {live.includes("play.google.com") ? "View on Google Play" : "Live"}
+        </a>
+      )}
+      {github && (
+        <a href={github} target="_blank" rel="noopener noreferrer" className={linkClass}>
+          <GitHubIcon className="h-4 w-4" />
+          Source
+        </a>
+      )}
+    </div>
+  );
+};
 
-        {professionalProjects.length > 0 && (
-          <div>
-            <div className="text-center">
-              <h3 className="inline-block text-2xl font-bold mb-6 text-slate-800 dark:text-slate-100 border-b-2 border-nepal-blue/30 pb-2">
-                Professional Projects
-              </h3>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {professionalProjects.map(renderProjectCard)}
-            </div>
-          </div>
-        )}
-      </SectionCard>
+const Stack: React.FC<{ items: string[] }> = ({ items }) => (
+  <div className="flex flex-wrap gap-1.5">
+    {items.map((item) => (
+      <Tag key={item}>{item}</Tag>
+    ))}
+  </div>
+);
 
-      <Modal
-        isOpen={!!selectedProject}
-        onClose={() => setSelectedProject(null)}
-      >
-        {selectedProject && (
-          <div>
-            <img
-              src={selectedProject.imageUrl}
-              alt={selectedProject.title}
-              className="w-full h-64 object-cover rounded-lg mb-4"
-            />
-            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
-              {selectedProject.title}
-            </h2>
-            <div className="flex flex-wrap gap-2 mb-4">
-              {selectedProject.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 text-sm font-semibold text-nepal-blue-dark dark:text-nepal-blue-light bg-nepal-blue/10 rounded-full"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <p className="text-slate-600 dark:text-slate-300 mb-6">
-              {selectedProject.detailedDescription}
-            </p>
-
-            <div className="flex items-center justify-center gap-4">
-              {selectedProject.links.github && (
-                <a
-                  href={selectedProject.links.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-slate-700 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 dark:focus:ring-offset-slate-900"
-                >
-                  <GitHubIcon className="w-5 h-5 mr-2" />
-                  Source Code
-                </a>
-              )}
-              {selectedProject.links.live && (
-                <a
-                  href={selectedProject.links.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-nepal-blue hover:bg-nepal-blue-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nepal-blue dark:focus:ring-offset-slate-900"
-                >
-                  <ExternalLinkIcon className="w-5 h-5 mr-2" />
-                  Live Demo
-                </a>
-              )}
-            </div>
-          </div>
+const FeaturedProject: React.FC<{ project: Project }> = ({ project }) => (
+  <article className="grid gap-8 rounded-2xl border border-zinc-200 bg-white p-6 sm:p-8 lg:grid-cols-2 lg:gap-12 dark:border-zinc-800 dark:bg-zinc-900/50">
+    <div className="flex flex-col">
+      <div className="flex items-center gap-4">
+        {project.icon && (
+          <img
+            src={project.icon}
+            alt=""
+            width={56}
+            height={56}
+            loading="lazy"
+            // Hotlinked store icons can disappear; hide rather than show a broken image.
+            onError={(e) => (e.currentTarget.style.display = "none")}
+            className="h-14 w-14 rounded-xl object-cover ring-1 ring-zinc-200 dark:ring-zinc-800"
+          />
         )}
-      </Modal>
-    </>
+        <div>
+          <p className="font-mono text-xs text-accent-600 dark:text-accent-400">{project.kind}</p>
+          <h3 className="mt-1 text-2xl font-semibold text-zinc-900 dark:text-white">{project.name}</h3>
+        </div>
+      </div>
+      <p className="mt-5 leading-relaxed text-zinc-600 dark:text-zinc-400">{project.summary}</p>
+      <div className="mt-6">
+        <Stack items={project.stack} />
+      </div>
+      <div className="mt-auto pt-8">
+        <ProjectLinks project={project} />
+      </div>
+    </div>
+    {project.highlights && (
+      <div className="rounded-xl bg-zinc-50 p-6 dark:bg-zinc-950/60">
+        <p className="font-mono text-xs uppercase tracking-wider text-zinc-500">What I built</p>
+        <ul className="mt-4 space-y-4">
+          {project.highlights.map((highlight) => (
+            <li key={highlight} className="flex gap-3 leading-relaxed text-zinc-700 dark:text-zinc-300">
+              <span className="font-mono text-accent-600 dark:text-accent-400" aria-hidden="true">
+                →
+              </span>
+              <span>{highlight}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </article>
+);
+
+const ProjectCard: React.FC<{ project: Project }> = ({ project }) => (
+  <article className="flex flex-col rounded-2xl border border-zinc-200 bg-white p-6 transition-colors hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-700">
+    <div className="flex flex-wrap items-center justify-between gap-2">
+      <p className="font-mono text-xs text-zinc-500">{project.kind}</p>
+      {project.status && (
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-500/10 px-2 py-0.5 font-mono text-xs text-accent-700 dark:text-accent-300">
+          <span className="h-1.5 w-1.5 rounded-full bg-accent-500" aria-hidden="true" />
+          {project.status}
+        </span>
+      )}
+    </div>
+    <h3 className="mt-3 text-lg font-semibold text-zinc-900 dark:text-white">{project.name}</h3>
+    <p className="mt-2 leading-relaxed text-zinc-600 dark:text-zinc-400">{project.summary}</p>
+    <div className="mt-5">
+      <Stack items={project.stack} />
+    </div>
+    <div className="mt-auto pt-6">
+      <ProjectLinks project={project} />
+    </div>
+  </article>
+);
+
+const Projects: React.FC = () => {
+  return (
+    <Section
+      id={SectionId.Projects}
+      title="Selected work"
+      description="Production systems from my day job, and things I've built on my own."
+    >
+      <FeaturedProject project={featuredProject} />
+      <div className="mt-6 grid gap-6 md:grid-cols-3">
+        {projects.map((project) => (
+          <ProjectCard key={project.name} project={project} />
+        ))}
+      </div>
+    </Section>
   );
 };
 

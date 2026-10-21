@@ -3,10 +3,12 @@ export enum Theme {
   Dark = 'dark',
 }
 
+/** Page sections, keyed by their element id. */
 export enum Section {
-  About = 'About',
-  Experience = 'Experience',
-  Projects = 'Projects',
-  Education = 'Education',
-  Blog = 'Blog',
+  Now = 'now',
+  Experience = 'experience',
+  Projects = 'projects',
+  Skills = 'skills',
+  Education = 'education',
+  Contact = 'contact',
 }
