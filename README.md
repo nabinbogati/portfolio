@@ -9,7 +9,7 @@ Personal portfolio of Nabin Bogati, senior backend engineer. Live at [nabinbogat
 
 ## Updating content
 
-All text (experience, projects, skills, the "now" section, certifications) lives in `data/profile.ts`.
+All text (headline, what I build, what drives me, projects, the "now" section, experience, certifications) lives in `data/profile.ts`.
 
 ```bash
 npm install

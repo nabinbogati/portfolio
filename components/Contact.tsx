@@ -1,22 +1,11 @@
 import React, { useState } from "react";
 import Section from "./Section";
 import { Section as SectionId } from "../types";
-import { hobbies, profile, Hobby } from "../data/profile";
+import { profile } from "../data/profile";
 import { EmailIcon } from "./icons/EmailIcon";
 import { GitHubIcon } from "./icons/GitHubIcon";
 import { LinkedInIcon } from "./icons/LinkedInIcon";
 import { CvIcon } from "./icons/CvIcon";
-import { BikingIcon } from "./icons/BikingIcon";
-import { HikingIcon } from "./icons/HikingIcon";
-import { GamingIcon } from "./icons/GamingIcon";
-import { TechIcon } from "./icons/TechIcon";
-
-const hobbyIcons: Record<Hobby["icon"], React.FC<React.SVGProps<SVGSVGElement>>> = {
-  biking: BikingIcon,
-  hiking: HikingIcon,
-  gaming: GamingIcon,
-  tech: TechIcon,
-};
 
 const links = [
   { href: profile.github, label: "GitHub", icon: GitHubIcon, external: true },
@@ -90,26 +79,6 @@ const Contact: React.FC = () => {
                 </a>
               </li>
             ))}
-          </ul>
-        </div>
-
-        <div className="mt-16">
-          <p className="font-mono text-sm text-zinc-500">
-            <span className="text-accent-600 dark:text-accent-400">#</span> outside work
-          </p>
-          <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {hobbies.map((hobby) => {
-              const Icon = hobbyIcons[hobby.icon];
-              return (
-                <li
-                  key={hobby.name}
-                  className="flex items-center gap-3 rounded-xl border border-zinc-200 px-4 py-3 text-sm text-zinc-700 dark:border-zinc-800 dark:text-zinc-300"
-                >
-                  <Icon className="h-5 w-5 flex-shrink-0 text-zinc-400" />
-                  {hobby.name}
-                </li>
-              );
-            })}
           </ul>
         </div>
       </Section>

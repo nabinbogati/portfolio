@@ -58,7 +58,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
         </a>
 
         <div className="flex items-center gap-2">
-          <ul className="hidden items-center gap-6 md:flex">
+          <ul className="hidden items-center gap-6 lg:flex">
             {navItems.map((item) => (
               <li key={item}>
                 <a href={`#${item}`} className={linkClass(item)}>
@@ -67,11 +67,11 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
               </li>
             ))}
           </ul>
-          <span className="mx-3 hidden h-5 w-px bg-zinc-200 md:block dark:bg-zinc-800" />
+          <span className="mx-3 hidden h-5 w-px bg-zinc-200 lg:block dark:bg-zinc-800" />
           <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
           <button
             onClick={() => setMenuOpen((open) => !open)}
-            className="rounded-full p-2 text-zinc-500 transition-colors hover:bg-zinc-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 md:hidden dark:text-zinc-400 dark:hover:bg-zinc-800"
+            className="rounded-full p-2 text-zinc-500 transition-colors hover:bg-zinc-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 lg:hidden dark:text-zinc-400 dark:hover:bg-zinc-800"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
@@ -82,7 +82,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
       </nav>
 
       {menuOpen && (
-        <ul id="mobile-menu" className="mx-auto max-w-6xl space-y-1 px-4 pb-4 sm:px-6 md:hidden">
+        <ul id="mobile-menu" className="mx-auto max-w-6xl space-y-1 px-4 pb-4 sm:px-6 lg:hidden">
           {navItems.map((item) => (
             <li key={item}>
               <a

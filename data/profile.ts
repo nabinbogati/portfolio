@@ -6,8 +6,6 @@ export const profile = {
   initials: "NB",
   title: "Senior Backend Engineer",
   location: "Kathmandu, Nepal",
-  currentRole: "Lead Backend Developer",
-  currentCompany: "Teslatech",
   // First full-time backend role; drives the "N+ years" figures across the site.
   careerStart: { year: 2019, month: 2 } as YearMonth,
   photo: "./assets/profile.png",
@@ -15,12 +13,87 @@ export const profile = {
   email: "nabin31bogati@gmail.com",
   github: "https://github.com/nabinbogati",
   linkedin: "https://np.linkedin.com/in/nabin-bogati-1b0a4a123",
-  coreStack: ["Python", "FastAPI", "PostgreSQL", "Redis"],
   // The word joiner (U+2060) stops "4–5" from breaking across lines after the dash.
   teamSize: "4–\u20605",
+  headline: "I build real-time backends for multiplayer games, and keep them running in production.",
+  currently: "Building multiplayer game backends at Teslatech",
 };
 
 export const yearsOfExperience = yearsSince(profile.careerStart);
+
+export const intro = `For ${yearsOfExperience}+ years I've designed, built and operated the server side of online games: async Python APIs, WebSockets and pub/sub messaging, PostgreSQL and Redis, and the load balancers and Linux servers underneath.`;
+
+export interface StackLayer {
+  layer: string;
+  does: string;
+  tools: string[];
+}
+
+/** The hero diagram: the parts of a game backend I own, from the edge down to the servers. */
+export const stackLayers: StackLayer[] = [
+  { layer: "edge", does: "load balancing · high availability", tools: ["HAProxy"] },
+  { layer: "services", does: "REST APIs · WebSocket game servers", tools: ["FastAPI", "aiohttp", "Flask"] },
+  { layer: "real-time", does: "pub/sub messaging", tools: ["Centrifugo"] },
+  { layer: "data", does: "persistence · caching · sessions", tools: ["PostgreSQL", "Redis", "MongoDB"] },
+  { layer: "infra", does: "servers · hardening · automation", tools: ["DigitalOcean", "Linux", "Bash", "cron"] },
+];
+
+export interface EngineeringArea {
+  title: string;
+  summary: string;
+  tools: string[];
+}
+
+export const engineering: EngineeringArea[] = [
+  {
+    title: "Real-time multiplayer systems",
+    summary:
+      "Game servers where every player sees the same state at the same moment. I build WebSocket services in async Python and a pub/sub messaging layer on Centrifugo, tuned for low latency and consistent game state across concurrent sessions.",
+    tools: ["WebSockets", "Centrifugo", "Pub/sub", "FastAPI", "aiohttp"],
+  },
+  {
+    title: "APIs & backend services",
+    summary:
+      "RESTful APIs designed for scalability and security. Async Python with FastAPI and aiohttp for high-concurrency services; Flask and Django REST Framework where they fit.",
+    tools: ["Python", "FastAPI", "aiohttp", "Flask", "Django REST Framework"],
+  },
+  {
+    title: "Data design & scaling",
+    summary:
+      "Relational and NoSQL stores built for integrity and speed: PostgreSQL schemas and query optimization, Redis for caching and session state, MongoDB, and strategies for scaling horizontally.",
+    tools: ["PostgreSQL", "Redis", "MongoDB"],
+  },
+  {
+    title: "Running it in production",
+    summary:
+      "I run what I build. That means configuring, hardening, monitoring and troubleshooting VPS environments on DigitalOcean, running HAProxy for load balancing and high availability, and automating routine operations with Python and Bash on cron.",
+    tools: ["Linux", "DigitalOcean", "HAProxy", "Docker", "Bash", "Cron", "Git"],
+  },
+];
+
+export interface Drive {
+  title: string;
+  text: string;
+}
+
+export const drives: Drive[] = [
+  {
+    title: "Games, from both sides",
+    text: "Games run through everything I do. I've spent most of my career building the backends for online multiplayer games, I play them in my spare time, and I've started shipping apps of my own, beginning with Connecting Dots on Google Play.",
+  },
+  {
+    title: "Owning the whole system",
+    text: "I don't stop at the API. I set up and harden the servers, configure the load balancer, watch how things perform and script away the repetitive work. Even my editor and shell setup lives in version control.",
+  },
+  {
+    title: "Hard real-time problems",
+    text: "Many players, one game state, and very little time to agree on it. Concurrency, consistency and latency are the problems I keep coming back to.",
+  },
+  {
+    title: "Widening the stack",
+    text: "Backend is home, but I keep reaching outward: a C# certification in 2025, TypeScript and React now, and taking an app all the way from idea to store listing on my own.",
+  },
+];
 
 export interface NowItem {
   label: string;
@@ -32,7 +105,7 @@ export const now = {
   items: [
     {
       label: "Working",
-      text: `Lead Backend Developer at Teslatech, architecting backends for real-time online multiplayer games and mentoring a team of ${profile.teamSize} developers.`,
+      text: `Architecting real-time backends for online multiplayer games at Teslatech, and mentoring a team of ${profile.teamSize} developers.`,
     },
     {
       label: "Shipped",
@@ -194,41 +267,6 @@ export const projects: Project[] = [
       "The classic game for the command line in Python: game-state management, input handling and win/draw detection.",
     stack: ["Python", "CLI"],
     links: { github: "https://github.com/nabinbogati/tic-tac-toe" },
-  },
-];
-
-export interface SkillGroup {
-  label: string;
-  items: string[];
-}
-
-export const skills: SkillGroup[] = [
-  {
-    label: "languages & frameworks",
-    items: ["Python", "FastAPI", "Flask", "aiohttp", "Django REST Framework", "Async programming"],
-  },
-  {
-    label: "data",
-    items: ["PostgreSQL", "Redis", "MongoDB", "Query optimization", "Horizontal scaling"],
-  },
-  {
-    label: "real-time & messaging",
-    items: ["WebSockets", "Centrifugo", "Pub/sub architecture"],
-  },
-  {
-    label: "infrastructure & ops",
-    items: ["Linux", "Docker", "DigitalOcean", "HAProxy", "Bash", "Cron", "Git"],
-  },
-  {
-    label: "practices",
-    items: [
-      "REST API design",
-      "System design",
-      "Security hardening",
-      "Automated testing",
-      "Technical leadership",
-      "Mentoring",
-    ],
   },
 ];
 
