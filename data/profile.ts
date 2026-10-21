@@ -54,8 +54,8 @@ export const engineering: EngineeringArea[] = [
   {
     title: "APIs & backend services",
     summary:
-      "RESTful APIs designed for scalability and security. Async Python with FastAPI and aiohttp for high-concurrency services; Flask and Django REST Framework where they fit.",
-    tools: ["Python", "FastAPI", "aiohttp", "Flask", "Django REST Framework"],
+      "RESTful APIs designed for scalability and security. Async Python with FastAPI and aiohttp for high-concurrency services, Flask and Django REST Framework where they fit, and lately Go.",
+    tools: ["Python", "FastAPI", "aiohttp", "Flask", "Django REST Framework", "Go"],
   },
   {
     title: "Data design & scaling",
@@ -79,7 +79,7 @@ export interface Drive {
 export const drives: Drive[] = [
   {
     title: "Games, from both sides",
-    text: "Games run through everything I do. I've spent most of my career building the backends for online multiplayer games, I play them in my spare time, and I've started shipping apps of my own, beginning with Connecting Dots on Google Play.",
+    text: "Games run through everything I do. I've spent most of my career building the backends for online multiplayer games, I play them in my spare time, and I build my own: Connecting Dots is on Google Play, and I'm rebuilding Callbreak from scratch.",
   },
   {
     title: "Owning the whole system",
@@ -91,7 +91,7 @@ export const drives: Drive[] = [
   },
   {
     title: "Widening the stack",
-    text: "Backend is home, but I keep reaching outward: a C# certification in 2025, TypeScript and React now, and taking an app all the way from idea to store listing on my own.",
+    text: "Backend is home, but I keep reaching outward: a C# certification in 2025, Go and Flutter this year, taking a game from idea to store listing on my own, and now LLMs, RAG and MCP.",
   },
 ];
 
@@ -108,12 +108,20 @@ export const now = {
       text: `Architecting real-time backends for online multiplayer games at Teslatech, and mentoring a team of ${profile.teamSize} developers.`,
     },
     {
+      label: "Building",
+      text: "Callbreak from scratch on my own time: a Go game server and a Flutter client, documented as a 20-module rebuild course.",
+    },
+    {
       label: "Shipped",
-      text: "Connecting Dots, my own Android app, is live on Google Play.",
+      text: "Connecting Dots, my one-line puzzle game, is live on Google Play.",
+    },
+    {
+      label: "Exploring",
+      text: "LLM tooling: retrieval-augmented generation (RAG), Model Context Protocol (MCP) servers, and agent skills like the one I wrote for commit messages.",
     },
     {
       label: "Learning",
-      text: "TypeScript and React, to work across the full stack, and design patterns for scalable system design.",
+      text: "Go and Flutter, by building Callbreak end to end, and design patterns for scalable system design.",
     },
     {
       label: "Reading",
@@ -223,34 +231,47 @@ export interface Project {
   };
 }
 
+// Load-test figures come from the "Load testing" section of the backend README in the repo.
 export const featuredProject: Project = {
-  name: "Callbreak: multiplayer game backend",
-  kind: "Professional · Teslatech",
+  name: "Callbreak game server",
+  kind: "Personal · Open source",
   summary:
-    "Designed and built the backend for a real-time online multiplayer card game, built for high availability and low latency with thousands of concurrent players.",
+    "An authoritative multiplayer server for the card game Callbreak, written in Go for its Flutter client. Invite-only private tables, quick-play matchmaking, and bots that fill empty seats.",
   highlights: [
-    "Real-time gameplay over WebSockets, served by async Python services (FastAPI, aiohttp).",
-    "PostgreSQL for persistent game data; Redis for caching and session state.",
-    "Kept game state consistent across concurrent sessions while keeping network latency low.",
-    "Scalable infrastructure on DigitalOcean to keep pace with a growing player base.",
+    "Load-tested at 800 concurrent players on one laptop core: 625 µs median and 13.6 ms p99 move latency, with zero dropped connections.",
+    "One goroutine per table owns all of its state, so turn order is correct by construction and the hot path takes no locks.",
+    "The rules engine is a pure state machine ported from the Dart client, with its tests ported case for case so client and server can't disagree.",
+    "Hidden hands are redacted at the boundary, a panic costs one table rather than the process, and Redis lets it scale across nodes.",
   ],
-  stack: ["Python", "FastAPI", "aiohttp", "WebSockets", "PostgreSQL", "Redis", "DigitalOcean"],
-  icon: "https://play-lh.googleusercontent.com/98wVaNrNvDGkmz5MwtrHkpNVgtUnKaMSqntl5ZVAMzYR0z4IXADMPN8Rq-3MtvfQ-m6s=w240-h480-rw",
-  links: {
-    live: "https://play.google.com/store/apps/details?id=io.teslatech.callbreak&hl=en",
-  },
+  stack: ["Go", "WebSockets", "PostgreSQL", "Redis", "Prometheus", "Docker", "Flutter"],
+  links: { github: "https://github.com/nabinbogati/callbreak-multiplayer" },
 };
 
 export const projects: Project[] = [
   {
-    name: "Connecting Dots",
-    kind: "Personal · Android",
+    name: "Callbreak at Teslatech",
+    kind: "Professional · Teslatech",
     summary:
-      "My own Android app, published on Google Play. Private by design: it collects no personal or usage data and uses no cookies or tracking.",
-    stack: ["Android", "Google Play"],
+      "The backend for Teslatech's online multiplayer Callbreak, built for high availability and low latency with thousands of concurrent players.",
+    stack: ["Python", "FastAPI", "aiohttp", "WebSockets", "PostgreSQL", "Redis"],
+    links: { live: "https://play.google.com/store/apps/details?id=io.teslatech.callbreak&hl=en" },
+  },
+  {
+    name: "Connecting Dots",
+    kind: "Personal · Mobile game",
+    summary:
+      "A one-line puzzle game: draw a single continuous path from the green dot to the red flag without crossing an obstacle. Built in Flutter and published on Google Play.",
+    stack: ["Flutter", "Dart", "Android"],
     status: "Live on Google Play",
-    // Add the Play Store URL as `live` to show a link on the card.
-    links: {},
+    links: { live: "https://play.google.com/store/apps/details?id=com.nabinbogati.connecting_dots" },
+  },
+  {
+    name: "Commit message agent skill",
+    kind: "Personal · AI tooling",
+    summary:
+      "An agent skill that teaches Claude my Conventional Commits standard, so any commit it writes or reviews follows the same types, scopes and subject rules I do.",
+    stack: ["Claude", "Agent Skills", "Git"],
+    links: { github: "https://github.com/nabinbogati/skills" },
   },
   {
     name: "Dotfiles",
@@ -259,14 +280,6 @@ export const projects: Project[] = [
       "Version-controlled configuration for Bash, Vim and Git, so I can reproduce my development environment on any new machine.",
     stack: ["Shell", "Vim", "Git", "Linux"],
     links: { github: "https://github.com/nabinbogati/dotfiles" },
-  },
-  {
-    name: "Tic-Tac-Toe",
-    kind: "Personal · Open source",
-    summary:
-      "The classic game for the command line in Python: game-state management, input handling and win/draw detection.",
-    stack: ["Python", "CLI"],
-    links: { github: "https://github.com/nabinbogati/tic-tac-toe" },
   },
 ];
 

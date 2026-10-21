@@ -116,7 +116,7 @@ const Projects: React.FC = () => {
       description="Production systems from my day job, and things I've built on my own."
     >
       <FeaturedProject project={featuredProject} />
-      <div className="mt-6 grid gap-6 md:grid-cols-3">
+      <div className="mt-6 grid gap-6 md:grid-cols-2">
         {projects.map((project) => (
           <ProjectCard key={project.name} project={project} />
         ))}
