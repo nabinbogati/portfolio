@@ -44,7 +44,7 @@ const JobCard: React.FC<{ job: Job }> = ({ job }) => {
   const end = job.roles[0].end;
 
   return (
-    <li className="grid gap-8 rounded-2xl border border-zinc-200 bg-white p-6 sm:p-8 md:grid-cols-12 dark:border-zinc-800 dark:bg-zinc-900/50">
+    <li className="grid gap-8 spotlight rounded-2xl border border-zinc-200 bg-white p-6 sm:p-8 md:grid-cols-12 dark:border-zinc-800 dark:bg-zinc-900/50">
       <div className="md:col-span-4">
         <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">{job.company}</h3>
         <p className="mt-1 text-sm text-zinc-500">{job.location}</p>
@@ -61,7 +61,7 @@ const JobCard: React.FC<{ job: Job }> = ({ job }) => {
           </div>
         )}
       </div>
-      <ol className="relative space-y-10 border-l border-zinc-200 md:col-span-8 dark:border-zinc-800">
+      <ol className="relative space-y-8 border-l border-zinc-200 md:col-span-8 dark:border-zinc-800">
         {job.roles.map((role) => (
           <RoleEntry key={role.title} role={role} />
         ))}
@@ -75,7 +75,7 @@ const Experience: React.FC = () => {
     <Section
       id={SectionId.Experience}
       title="Where I've worked"
-      description={`${yearsOfExperience}+ years building backend systems, most of them at Teslatech, where I grew from backend developer to lead.`}
+      description={`${yearsOfExperience}+ years building backend systems, growing from intern to leading a backend team.`}
     >
       <ol className="space-y-6">
         {experience.map((job) => (

@@ -1,0 +1,68 @@
+<!doctype html>
+<!-- General cover letter. Replace every [bracketed] placeholder, then run resume/build.sh. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Nabin Bogati · Cover letter</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  @page { size: A4; margin: 20mm 22mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font: 10.5pt/1.6 "Inter", "Noto Sans", sans-serif; color: #27272a; }
+  a { color: inherit; text-decoration: none; }
+  header { padding-bottom: 10pt; border-bottom: 1.5pt solid #18181b; }
+  h1 { font-size: 19pt; line-height: 1.1; font-weight: 700; color: #18181b; letter-spacing: -0.3pt; }
+  .role { margin-top: 3pt; font-weight: 600; color: #047857; }
+  .contact { margin-top: 4pt; font-size: 9pt; color: #52525b; }
+  .to { margin-top: 22pt; }
+  p + p { margin-top: 10pt; }
+  .body { margin-top: 16pt; }
+  ul { margin: 6pt 0 0 14pt; }
+  li + li { margin-top: 4pt; }
+  ul + p { margin-top: 10pt; }
+  li::marker { color: #a1a1aa; }
+  strong { color: #18181b; font-weight: 600; }
+  .sign { margin-top: 20pt; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Nabin Bogati</h1>
+  <p class="role">Backend &amp; AI Agent Engineer</p>
+  <p class="contact">
+    Kathmandu, Nepal · <a href="mailto:nabin31bogati@gmail.com">nabin31bogati@gmail.com</a> ·
+    <a href="https://nabinbogati.com.np">nabinbogati.com.np</a> · <a href="https://github.com/nabinbogati">github.com/nabinbogati</a>
+  </p>
+</header>
+
+<div class="to">
+  <p>[Date]</p>
+  <p>Hiring Manager<br />[Company]</p>
+</div>
+
+<div class="body">
+  <p>Dear Hiring Manager,</p>
+
+  <p>
+    I'm applying for the <strong>[Role]</strong> position at [Company]. I'm a backend engineer with 7+ years of
+    designing, building and running production systems in Python and Go, and I currently lead a backend team of
+    4–5 developers. [One sentence on why this company or product specifically.]
+  </p>
+
+  <p>What I'd bring:</p>
+  <ul>
+    <li><strong>Production backends, end to end.</strong> I've built async Python APIs, WebSocket services and a Centrifugo pub/sub layer for systems with thousands of concurrent users. I also run them: PostgreSQL and Redis, HAProxy, server hardening and monitoring.</li>
+    <li><strong>Correctness under load.</strong> My Go game server handles 800 concurrent players on a single core at a 13.6 ms p99, because each table's state is owned by one goroutine and the hot path takes no locks.</li>
+    <li><strong>Data systems.</strong> I built NEPSE Desk, a Go pipeline and Next.js platform that ingests stock-market data daily, adjusts it, computes indicators and grades trading strategies against the history.</li>
+    <li><strong>Reliable AI-assisted engineering.</strong> I've built a skills pipeline that makes coding agents clarify before they build, keep their changes surgical and review their own work, with long-term memory and a code-graph MCP server behind it.</li>
+  </ul>
+
+  <p>
+    I'd welcome the chance to talk about how I can help [Company] with [a specific goal or challenge from the job post].
+    My CV is attached, and my projects are at nabinbogati.com.np.
+  </p>
+
+  <p class="sign">Sincerely,<br /><strong>Nabin Bogati</strong></p>
+</div>
+</body>
+</html>

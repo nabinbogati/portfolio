@@ -19,9 +19,15 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
   const activeSection = useActiveSection(observedIds);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  // How far down the page the reader is, from 0 to 1, for the progress bar under the header.
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(scrollable > 0 ? Math.min(1, window.scrollY / scrollable) : 0);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -80,6 +86,12 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
           </button>
         </div>
       </nav>
+
+      <span
+        className="absolute inset-x-0 -bottom-px h-px origin-left bg-accent-500"
+        style={{ transform: `scaleX(${progress})` }}
+        aria-hidden="true"
+      />
 
       {menuOpen && (
         <ul id="mobile-menu" className="mx-auto max-w-6xl space-y-1 px-4 pb-4 sm:px-6 lg:hidden">

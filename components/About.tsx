@@ -17,7 +17,7 @@ const hobbyIcons: Record<Hobby["icon"], React.FC<React.SVGProps<SVGSVGElement>>>
 const About: React.FC = () => {
   return (
     <Section id={SectionId.About} title="What drives me">
-      <div className="grid gap-x-12 gap-y-10 md:grid-cols-2">
+      <div className="grid gap-x-12 gap-y-8 md:grid-cols-2">
         {drives.map((drive) => (
           <div key={drive.title} className="border-l-2 border-accent-500/40 pl-6">
             <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">{drive.title}</h3>
@@ -26,7 +26,7 @@ const About: React.FC = () => {
         ))}
       </div>
 
-      <div className="mt-16">
+      <div className="mt-10">
         <p className="font-mono text-sm text-zinc-500">
           <span className="text-accent-600 dark:text-accent-400">#</span> outside work
         </p>

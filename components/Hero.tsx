@@ -5,6 +5,7 @@ import { CvIcon } from "./icons/CvIcon";
 import { EmailIcon } from "./icons/EmailIcon";
 import { GitHubIcon } from "./icons/GitHubIcon";
 import { LinkedInIcon } from "./icons/LinkedInIcon";
+import { MapPinIcon } from "./icons/MapPinIcon";
 
 const socials = [
   { href: profile.github, label: "GitHub", icon: GitHubIcon },
@@ -15,26 +16,31 @@ const socials = [
 const Hero: React.FC = () => {
   return (
     <section id="top" className="relative -mt-16 overflow-hidden pt-16">
-      <div className="bg-grid pointer-events-none absolute inset-0" aria-hidden="true" />
-      <div className="relative mx-auto grid max-w-6xl gap-14 px-4 pb-20 pt-14 sm:px-6 sm:pt-20 lg:grid-cols-12 lg:items-center lg:gap-12 lg:px-8 lg:pb-28">
+      <div className="relative mx-auto grid max-w-6xl gap-10 px-4 pb-12 pt-10 sm:px-6 sm:pt-14 lg:grid-cols-12 lg:items-center lg:gap-12 lg:px-8 lg:pb-16">
         <div className="animate-fade-in lg:col-span-7">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5 sm:gap-6">
             <img
               src={profile.photo}
               alt={profile.name}
-              width={56}
-              height={56}
-              className="h-14 w-14 rounded-full object-cover ring-2 ring-white shadow-md dark:ring-zinc-800"
+              width={112}
+              height={112}
+              className="h-20 w-20 flex-shrink-0 rounded-2xl object-cover shadow-lg ring-4 ring-white transition-[rotate,scale] duration-500 ease-out hover:-rotate-3 hover:scale-105 sm:h-28 sm:w-28 dark:ring-zinc-800"
             />
-            <div>
-              <p className="font-semibold text-zinc-900 dark:text-white">{profile.name}</p>
-              <p className="text-sm text-zinc-500">
-                {profile.title} · {profile.location}
+            <div className="min-w-0">
+              <p className="text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-white">
+                {profile.name}
+              </p>
+              <p className="mt-1.5 font-mono text-sm font-medium text-accent-700 sm:text-base dark:text-accent-400">
+                {profile.title}
+              </p>
+              <p className="mt-1 flex items-center gap-1.5 text-sm text-zinc-500">
+                <MapPinIcon className="h-4 w-4 flex-shrink-0" />
+                {profile.location}
               </p>
             </div>
           </div>
 
-          <h1 className="mt-10 text-4xl font-bold leading-[1.1] tracking-tight text-zinc-900 sm:text-5xl lg:text-[3.25rem] dark:text-white">
+          <h1 className="mt-8 text-4xl font-bold leading-[1.1] tracking-tight text-zinc-900 sm:text-5xl lg:text-[3.25rem] dark:text-white">
             {profile.headline}
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">

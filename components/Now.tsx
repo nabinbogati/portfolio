@@ -19,7 +19,7 @@ const Now: React.FC = () => {
         {now.items.map((item) => (
           <li
             key={item.label}
-            className="rounded-2xl border border-zinc-200 bg-white p-6 transition-colors hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-700"
+            className="spotlight rounded-2xl border border-zinc-200 bg-white p-6 transition-colors hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-700"
           >
             <p className="font-mono text-xs uppercase tracking-wider text-accent-600 dark:text-accent-400">
               {item.label}

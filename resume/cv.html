@@ -1,0 +1,116 @@
+<!doctype html>
+<!-- Source for public/assets/NabinBogati.pdf. Edit, then run resume/build.sh. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Nabin Bogati</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  @page { size: A4; margin: 12mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font: 9.2pt/1.4 "Inter", "Noto Sans", sans-serif; color: #27272a; }
+  a { color: inherit; text-decoration: none; }
+  header { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 9pt; border-bottom: 1.5pt solid #18181b; }
+  h1 { font-size: 21pt; line-height: 1.1; font-weight: 700; color: #18181b; letter-spacing: -0.3pt; }
+  .role { margin-top: 3pt; font-size: 10.5pt; font-weight: 600; color: #047857; }
+  .contact { text-align: right; font-size: 8.6pt; line-height: 1.5; color: #52525b; }
+  h2 { margin: 9pt 0 4pt; font-size: 8pt; font-weight: 700; letter-spacing: 1.2pt; text-transform: uppercase; color: #047857; }
+  .summary { margin-top: 9pt; }
+  .skills { display: grid; grid-template-columns: 78pt 1fr; gap: 1.5pt 8pt; }
+  .skills dt { font-weight: 600; color: #18181b; }
+  .entry + .entry { margin-top: 6pt; }
+  .entry-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8pt; }
+  .entry-head strong { font-size: 10pt; color: #18181b; }
+  .meta { font-size: 8.6pt; color: #71717a; white-space: nowrap; }
+  .sub { display: flex; justify-content: space-between; font-weight: 500; color: #3f3f46; }
+  ul { margin-top: 3pt; padding-left: 11pt; }
+  li + li { margin-top: 1.5pt; }
+  li::marker { color: #a1a1aa; }
+  .stack { color: #71717a; font-weight: 400; }
+  .one-line { display: flex; justify-content: space-between; gap: 8pt; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Nabin Bogati</h1>
+    <p class="role">Backend &amp; AI Agent Engineer</p>
+  </div>
+  <div class="contact">
+    Kathmandu, Nepal · <a href="mailto:nabin31bogati@gmail.com">nabin31bogati@gmail.com</a><br />
+    <a href="https://nabinbogati.com.np">nabinbogati.com.np</a> · <a href="https://github.com/nabinbogati">github.com/nabinbogati</a><br />
+    <a href="https://np.linkedin.com/in/nabin-bogati-1b0a4a123">linkedin.com/in/nabin-bogati-1b0a4a123</a>
+  </div>
+</header>
+
+<p class="summary">
+  Backend engineer with 7+ years of designing, building and running production systems in Python and Go:
+  real-time WebSocket services, scheduled data pipelines, PostgreSQL and Redis, and the Linux infrastructure underneath.
+  I lead a team of 4–5 developers, and I build agent tooling (skills pipelines, persistent memory, MCP) that makes
+  AI-assisted development reliable enough to ship.
+</p>
+
+<h2>Skills</h2>
+<dl class="skills">
+  <dt>Languages</dt><dd>Python, Go, SQL, TypeScript, Bash, Dart</dd>
+  <dt>Backend</dt><dd>FastAPI, aiohttp, Flask, Django REST Framework, WebSockets, pub/sub (Centrifugo)</dd>
+  <dt>Data</dt><dd>PostgreSQL, Redis, MongoDB, schema design and query optimization</dd>
+  <dt>Infrastructure</dt><dd>Linux, Docker, HAProxy, DigitalOcean, Prometheus, cron, Git</dd>
+  <dt>AI &amp; agents</dt><dd>Claude Code, agent skills, MCP servers, agent memory (Hindsight), local LLMs</dd>
+  <dt>Also</dt><dd>Next.js, React, Flutter</dd>
+</dl>
+
+<h2>Experience</h2>
+<div class="entry">
+  <div class="entry-head"><strong>Teslatech Pvt. Ltd.</strong><span class="meta">Lalitpur, Nepal</span></div>
+  <div class="sub"><span>Lead Backend Developer</span><span class="meta">Apr 2023 – Present</span></div>
+  <div class="sub"><span>Backend Developer</span><span class="meta">Feb 2019 – Apr 2023</span></div>
+  <ul>
+    <li>Architect and build backends for real-time online games in async Python (FastAPI, aiohttp, WebSockets) on PostgreSQL, Redis and MongoDB, including Callbreak, which serves thousands of concurrent players.</li>
+    <li>Lead and mentor a team of 4–5 developers across design, code review, testing and deployment.</li>
+    <li>Designed a Centrifugo pub/sub layer for real-time messaging, and REST APIs and data models built to scale.</li>
+    <li>Run production on DigitalOcean: server setup, hardening, monitoring and troubleshooting; HAProxy for load balancing and high availability; Python and Bash automation on cron.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="entry-head"><strong>Dryice Pvt. Ltd.</strong> <span class="meta">Lalitpur, Nepal</span></div>
+  <div class="sub"><span>Backend Intern</span><span class="meta">Jul 2018 – Jan 2019</span></div>
+  <ul>
+    <li>Built Django REST Framework apps and their automated tests, and a Yahoo Finance stock-price crawler.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="one-line"><span><strong>CloudFactory Nepal</strong> · Cloud Analyst: data analysis and QA support</span><span class="meta">Jan 2017 – Jun 2018</span></div>
+</div>
+
+<h2>Selected projects</h2>
+<div class="entry">
+  <div class="entry-head"><strong>NEPSE Desk <span class="stack">· Go, PostgreSQL, Next.js, Docker</span></strong><span class="meta">github.com/nabinbogati/stock-analyzer</span></div>
+  <ul>
+    <li>Stock-market data platform: a daily Go pipeline syncs prices incrementally, adjusts history for corporate actions, computes indicators and market breadth, and grades eight trading strategies against the history.</li>
+    <li>Multi-user Next.js app with portfolio ledger (WACC, P&amp;L), hashed-token sign-in, roles, and admin jobs that share a lock with cron.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="entry-head"><strong>Callbreak game server <span class="stack">· Go, WebSockets, Redis, Prometheus</span></strong><span class="meta">github.com/nabinbogati/callbreak-multiplayer</span></div>
+  <ul>
+    <li>Authoritative multiplayer server: 800 concurrent players on one core at 625 µs median and 13.6 ms p99 move latency, with zero dropped connections.</li>
+    <li>One goroutine owns each table's state, so the hot path is lock-free. A pure rules engine shares its tests with the Flutter client.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="entry-head"><strong>Agent engineering pipeline <span class="stack">· Agent Skills, MCP, Claude Code</span></strong><span class="meta">github.com/nabinbogati/SKILLS</span></div>
+  <ul>
+    <li>Two-stage skills pipeline for coding agents: clarify into a compact spec, then build surgical changes and end with a production-ready check, backed by long-term memory and a code-graph MCP server.</li>
+    <li>Also a Conventional Commits skill for Claude; I test local LLMs and agent harnesses on my own hardware.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="one-line"><span><strong>Connecting Dots</strong> <span class="stack">· Flutter</span> · one-line puzzle game, designed, built and published solo</span><span class="meta">Live on Google Play</span></div>
+</div>
+
+<h2>Education &amp; certifications</h2>
+<div class="one-line"><span><strong>B.Sc. Computer Science and Information Technology</strong> · Nagarjuna College of IT, Lalitpur</span><span class="meta">2014 – 2018</span></div>
+<p style="margin-top:3pt">Foundational C# with Microsoft (freeCodeCamp, 2025) · Google: Crash Course on Python; Using Python to Interact with the Operating System (2020)</p>
+</body>
+</html>

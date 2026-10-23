@@ -11,8 +11,8 @@ interface SectionProps {
 
 const Section: React.FC<SectionProps> = ({ id, title, description, aside, children }) => {
   return (
-    <section id={id} className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
-      <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+    <section id={id} className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <div className="reveal mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div className="max-w-2xl">
           <p className="font-mono text-sm text-accent-600 dark:text-accent-400">
             <span className="text-zinc-400 dark:text-zinc-600">//</span> {id}
@@ -28,7 +28,7 @@ const Section: React.FC<SectionProps> = ({ id, title, description, aside, childr
         </div>
         {aside}
       </div>
-      {children}
+      <div className="reveal [transition-delay:120ms]">{children}</div>
     </section>
   );
 };

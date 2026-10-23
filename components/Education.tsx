@@ -13,7 +13,7 @@ const Education: React.FC = () => {
     <>
       <Section id={SectionId.Education} title="Education & certifications">
         <div className="grid gap-6 lg:grid-cols-3">
-          <div className="rounded-2xl border border-zinc-200 bg-white p-6 sm:p-8 dark:border-zinc-800 dark:bg-zinc-900/50">
+          <div className="spotlight rounded-2xl border border-zinc-200 bg-white p-6 sm:p-8 dark:border-zinc-800 dark:bg-zinc-900/50">
             <p className="font-mono text-xs uppercase tracking-wider text-accent-600 dark:text-accent-400">
               Degree
             </p>
@@ -32,7 +32,7 @@ const Education: React.FC = () => {
               <button
                 key={cert.name}
                 onClick={() => setSelectedCert(cert)}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white text-left transition-colors hover:border-zinc-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-700"
+                className="group flex flex-col overflow-hidden spotlight rounded-2xl border border-zinc-200 bg-white text-left transition-colors hover:border-zinc-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-700"
                 aria-label={`View certificate: ${cert.name}`}
               >
                 <div className="overflow-hidden border-b border-zinc-200 dark:border-zinc-800">

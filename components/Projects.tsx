@@ -2,7 +2,7 @@ import React from "react";
 import Section from "./Section";
 import Tag from "./Tag";
 import { Section as SectionId } from "../types";
-import { featuredProject, projects, Project } from "../data/profile";
+import { featuredProjects, projects, Project } from "../data/profile";
 import { GitHubIcon } from "./icons/GitHubIcon";
 import { ExternalLinkIcon } from "./icons/ExternalLinkIcon";
 
@@ -40,7 +40,7 @@ const Stack: React.FC<{ items: string[] }> = ({ items }) => (
 );
 
 const FeaturedProject: React.FC<{ project: Project }> = ({ project }) => (
-  <article className="grid gap-8 rounded-2xl border border-zinc-200 bg-white p-6 sm:p-8 lg:grid-cols-2 lg:gap-12 dark:border-zinc-800 dark:bg-zinc-900/50">
+  <article className="grid gap-6 spotlight rounded-2xl border border-zinc-200 bg-white p-6 sm:p-8 lg:grid-cols-2 lg:gap-10 dark:border-zinc-800 dark:bg-zinc-900/50">
     <div className="flex flex-col">
       <div className="flex items-center gap-4">
         {project.icon && (
@@ -64,7 +64,7 @@ const FeaturedProject: React.FC<{ project: Project }> = ({ project }) => (
       <div className="mt-6">
         <Stack items={project.stack} />
       </div>
-      <div className="mt-auto pt-8">
+      <div className="mt-auto pt-6">
         <ProjectLinks project={project} />
       </div>
     </div>
@@ -87,7 +87,7 @@ const FeaturedProject: React.FC<{ project: Project }> = ({ project }) => (
 );
 
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => (
-  <article className="flex flex-col rounded-2xl border border-zinc-200 bg-white p-6 transition-colors hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-700">
+  <article className="flex flex-col spotlight rounded-2xl border border-zinc-200 bg-white p-6 transition-[border-color,translate] duration-300 hover:-translate-y-0.5 hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-700">
     <div className="flex flex-wrap items-center justify-between gap-2">
       <p className="font-mono text-xs text-zinc-500">{project.kind}</p>
       {project.status && (
@@ -113,9 +113,13 @@ const Projects: React.FC = () => {
     <Section
       id={SectionId.Projects}
       title="Selected work"
-      description="Production systems from my day job, and things I've built on my own."
+      description="Systems I've designed and built end to end, from data platforms to game servers to agent tooling."
     >
-      <FeaturedProject project={featuredProject} />
+      <div className="space-y-6">
+        {featuredProjects.map((project) => (
+          <FeaturedProject key={project.name} project={project} />
+        ))}
+      </div>
       <div className="mt-6 grid gap-6 md:grid-cols-2">
         {projects.map((project) => (
           <ProjectCard key={project.name} project={project} />

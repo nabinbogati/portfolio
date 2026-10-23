@@ -4,7 +4,7 @@ import { YearMonth, yearsSince } from "../lib/time";
 export const profile = {
   name: "Nabin Bogati",
   initials: "NB",
-  title: "Senior Backend Engineer",
+  title: "Backend & AI Agent Engineer",
   location: "Kathmandu, Nepal",
   // First full-time backend role; drives the "N+ years" figures across the site.
   careerStart: { year: 2019, month: 2 } as YearMonth,
@@ -15,27 +15,27 @@ export const profile = {
   linkedin: "https://np.linkedin.com/in/nabin-bogati-1b0a4a123",
   // The word joiner (U+2060) stops "4–5" from breaking across lines after the dash.
   teamSize: "4–\u20605",
-  headline: "I build real-time backends for multiplayer games, and keep them running in production.",
-  currently: "Building multiplayer game backends at Teslatech",
+  headline: "I build backend systems that hold up in production, and the AI agents that help build them.",
+  currently: "Building in Python & Go · engineering with AI agents",
 };
 
 export const yearsOfExperience = yearsSince(profile.careerStart);
 
-export const intro = `For ${yearsOfExperience}+ years I've designed, built and operated the server side of online games: async Python APIs, WebSockets and pub/sub messaging, PostgreSQL and Redis, and the load balancers and Linux servers underneath.`;
+export const intro = `For ${yearsOfExperience}+ years I've designed, built and run backends end to end: async Python and Go services, real-time WebSocket systems, scheduled data pipelines, PostgreSQL and Redis, and the Linux servers underneath. Now I'm making AI agents a disciplined part of how that software gets built.`;
 
 export interface StackLayer {
   layer: string;
-  does: string;
   tools: string[];
 }
 
-/** The hero diagram: the parts of a game backend I own, from the edge down to the servers. */
+/** The hero terminal: the layers of a backend I own, from the edge down to the servers. */
 export const stackLayers: StackLayer[] = [
-  { layer: "edge", does: "load balancing · high availability", tools: ["HAProxy"] },
-  { layer: "services", does: "REST APIs · WebSocket game servers", tools: ["FastAPI", "aiohttp", "Flask"] },
-  { layer: "real-time", does: "pub/sub messaging", tools: ["Centrifugo"] },
-  { layer: "data", does: "persistence · caching · sessions", tools: ["PostgreSQL", "Redis", "MongoDB"] },
-  { layer: "infra", does: "servers · hardening · automation", tools: ["DigitalOcean", "Linux", "Bash", "cron"] },
+  { layer: "edge", tools: ["HAProxy"] },
+  { layer: "services", tools: ["FastAPI", "aiohttp", "Go"] },
+  { layer: "real-time", tools: ["Centrifugo", "Redis"] },
+  { layer: "pipelines", tools: ["Go", "Python", "cron"] },
+  { layer: "data", tools: ["PostgreSQL", "Redis", "MongoDB"] },
+  { layer: "infra", tools: ["Linux", "Docker", "Prometheus"] },
 ];
 
 export interface EngineeringArea {
@@ -46,28 +46,39 @@ export interface EngineeringArea {
 
 export const engineering: EngineeringArea[] = [
   {
-    title: "Real-time multiplayer systems",
-    summary:
-      "Game servers where every player sees the same state at the same moment. I build WebSocket services in async Python and a pub/sub messaging layer on Centrifugo, tuned for low latency and consistent game state across concurrent sessions.",
-    tools: ["WebSockets", "Centrifugo", "Pub/sub", "FastAPI", "aiohttp"],
-  },
-  {
     title: "APIs & backend services",
     summary:
-      "RESTful APIs designed for scalability and security. Async Python with FastAPI and aiohttp for high-concurrency services, Flask and Django REST Framework where they fit, and lately Go.",
-    tools: ["Python", "FastAPI", "aiohttp", "Flask", "Django REST Framework", "Go"],
+      "Services designed for scale and security: async Python with FastAPI and aiohttp for high-concurrency APIs, Flask and Django REST Framework where they fit, and Go when I want one fast, boring binary.",
+    tools: ["Python", "Go", "FastAPI", "aiohttp", "Flask", "Django REST Framework"],
   },
   {
-    title: "Data design & scaling",
+    title: "Real-time & concurrent systems",
     summary:
-      "Relational and NoSQL stores built for integrity and speed: PostgreSQL schemas and query optimization, Redis for caching and session state, MongoDB, and strategies for scaling horizontally.",
-    tools: ["PostgreSQL", "Redis", "MongoDB"],
+      "Systems where many clients share one state and very little time to agree on it. WebSocket servers, pub/sub on Centrifugo and Redis, and Go designs where one goroutine owns the state so the hot path needs no locks.",
+    tools: ["WebSockets", "Centrifugo", "Pub/sub", "Goroutines", "Redis"],
+  },
+  {
+    title: "Data pipelines & storage",
+    summary:
+      "Scheduled ingestion that pulls from external APIs, cleans and adjusts the data, then computes on it: indicators, backtests, scores. Underneath, PostgreSQL schemas and queries built for integrity, plus Redis and MongoDB where they earn their place.",
+    tools: ["PostgreSQL", "Redis", "MongoDB", "Go", "cron"],
+  },
+  {
+    title: "AI agents & developer tooling",
+    summary:
+      "Agent skills and pipelines that make coding agents clarify before they build, keep changes surgical and judge their own output. I wire in long-term memory and code-graph MCP servers, and run local LLMs on llama.cpp, Strata and Colibri under several agent harnesses to see how they really behave.",
+    tools: ["Claude Code", "Agent Skills", "MCP", "llama.cpp", "Local LLMs", "Hindsight"],
   },
   {
     title: "Running it in production",
     summary:
-      "I run what I build. That means configuring, hardening, monitoring and troubleshooting VPS environments on DigitalOcean, running HAProxy for load balancing and high availability, and automating routine operations with Python and Bash on cron.",
-    tools: ["Linux", "DigitalOcean", "HAProxy", "Docker", "Bash", "Cron", "Git"],
+      "I run what I build: configuring, hardening, monitoring and troubleshooting Linux servers, HAProxy for load balancing and high availability, Docker for deployment, Prometheus for metrics, and Python and Bash on cron for the routine work.",
+    tools: ["Linux", "DigitalOcean", "HAProxy", "Docker", "Prometheus", "Bash"],
+  },
+  {
+    title: "Leading a team",
+    summary: `I lead and mentor a backend team of ${profile.teamSize} developers across the whole lifecycle: design reviews, coding and testing standards, and deployments that don't need a hero.`,
+    tools: ["Mentoring", "Code review", "System design"],
   },
 ];
 
@@ -78,20 +89,20 @@ export interface Drive {
 
 export const drives: Drive[] = [
   {
-    title: "Games, from both sides",
-    text: "Games run through everything I do. I've spent most of my career building the backends for online multiplayer games, I play them in my spare time, and I build my own: Connecting Dots is on Google Play, and I'm rebuilding Callbreak from scratch.",
-  },
-  {
     title: "Owning the whole system",
     text: "I don't stop at the API. I set up and harden the servers, configure the load balancer, watch how things perform and script away the repetitive work. Even my editor and shell setup lives in version control.",
   },
   {
-    title: "Hard real-time problems",
-    text: "Many players, one game state, and very little time to agree on it. Concurrency, consistency and latency are the problems I keep coming back to.",
+    title: "Correct by construction",
+    text: "Concurrency, consistency and latency are the problems I keep coming back to. I prefer designs where the wrong thing can't happen over code that hopes it won't.",
+  },
+  {
+    title: "Agents as disciplined teammates",
+    text: "I think the next decade of software gets written alongside AI agents. The interesting work is making them reliable: clear specs, small diffs, memory of the codebase and honest self-review.",
   },
   {
     title: "Widening the stack",
-    text: "Backend is home, but I keep reaching outward: a C# certification in 2025, Go and Flutter this year, taking a game from idea to store listing on my own, and now LLMs, RAG and MCP.",
+    text: "Backend is home, but I keep reaching outward: Go and Flutter, a C# certification, a puzzle game taken from idea to Google Play on my own, and now agents, MCP and local models.",
   },
 ];
 
@@ -105,23 +116,23 @@ export const now = {
   items: [
     {
       label: "Working",
-      text: `Architecting real-time backends for online multiplayer games at Teslatech, and mentoring a team of ${profile.teamSize} developers.`,
+      text: `Leading a backend team of ${profile.teamSize} developers, building real-time systems in async Python.`,
     },
     {
       label: "Building",
-      text: "Callbreak from scratch on my own time: a Go game server and a Flutter client, documented as a 20-module rebuild course.",
+      text: "NEPSE Desk, a stock-market data platform in Go and Next.js, and a Callbreak game server in Go.",
     },
     {
-      label: "Shipped",
-      text: "Connecting Dots, my one-line puzzle game, is live on Google Play.",
+      label: "Engineering with agents",
+      text: "Refining a two-stage agent pipeline (clarify, then build) with persistent memory and a code-graph MCP server.",
     },
     {
-      label: "Exploring",
-      text: "LLM tooling: retrieval-augmented generation (RAG), Model Context Protocol (MCP) servers, and agent skills like the one I wrote for commit messages.",
+      label: "Experimenting",
+      text: "Running local LLMs on llama.cpp, Strata and Colibri on 8–12 GB GPUs, and driving them from Claude Code, dsh, Hermes Agent and Pi.",
     },
     {
       label: "Learning",
-      text: "Go and Flutter, by building Callbreak end to end, and design patterns for scalable system design.",
+      text: "Go and Flutter by shipping real projects end to end, and design patterns for scalable systems.",
     },
     {
       label: "Reading",
@@ -231,30 +242,55 @@ export interface Project {
   };
 }
 
-// Load-test figures come from the "Load testing" section of the backend README in the repo.
-export const featuredProject: Project = {
-  name: "Callbreak game server",
-  kind: "Personal · Open source",
-  summary:
-    "An authoritative multiplayer server for the card game Callbreak, written in Go for its Flutter client. Invite-only private tables, quick-play matchmaking, and bots that fill empty seats.",
-  highlights: [
-    "Load-tested at 800 concurrent players on one laptop core: 625 µs median and 13.6 ms p99 move latency, with zero dropped connections.",
-    "One goroutine per table owns all of its state, so turn order is correct by construction and the hot path takes no locks.",
-    "The rules engine is a pure state machine ported from the Dart client, with its tests ported case for case so client and server can't disagree.",
-    "Hidden hands are redacted at the boundary, a panic costs one table rather than the process, and Redis lets it scale across nodes.",
-  ],
-  stack: ["Go", "WebSockets", "PostgreSQL", "Redis", "Prometheus", "Docker", "Flutter"],
-  links: { github: "https://github.com/nabinbogati/callbreak-multiplayer" },
-};
+/** Shown large at the top of the projects section, in order. */
+export const featuredProjects: Project[] = [
+  {
+    name: "NEPSE Desk",
+    kind: "Personal · Data platform",
+    summary:
+      "A Nepal Stock Exchange data platform and portfolio manager. A Go engine syncs prices from NEPSE every trading day and analyses them. A mobile-first Next.js app turns that into a screener, a portfolio ledger and trade ideas with a public track record.",
+    highlights: [
+      "A daily Go pipeline syncs prices into PostgreSQL incrementally, then adjusts the history for bonus and right shares so charts and indicators stay honest.",
+      "Computes indicators, relative-strength ratings and market breadth, grades eight published trading strategies against the history, and records every recommendation with its outcome.",
+      "Per-user portfolio ledger with WACC and realized and unrealized profit and loss. Sign-in uses hashed one-time tokens, with roles and plans on top.",
+      "Admin jobs and the cron crawler share one lock file so they never overlap. Kysely types are generated from the live schema, and Playwright covers the admin flows.",
+    ],
+    stack: ["Go", "PostgreSQL", "Next.js", "TypeScript", "Kysely", "Docker", "Playwright"],
+    links: { github: "https://github.com/nabinbogati/stock-analyzer" },
+  },
+  // Load-test figures come from the "Load testing" section of the backend README in the repo.
+  {
+    name: "Callbreak game server",
+    kind: "Personal · Open source",
+    summary:
+      "An authoritative multiplayer server for the card game Callbreak, written in Go for its Flutter client. Invite-only private tables, quick-play matchmaking, and bots that fill empty seats.",
+    highlights: [
+      "Load-tested at 800 concurrent players on one laptop core: 625 µs median and 13.6 ms p99 move latency, with zero dropped connections.",
+      "One goroutine per table owns all of its state, so turn order is correct by construction and the hot path takes no locks.",
+      "The rules engine is a pure state machine ported from the Dart client, with its tests ported case for case so client and server can't disagree.",
+      "Hidden hands are redacted at the boundary, a panic costs one table rather than the process, and Redis lets it scale across nodes.",
+    ],
+    stack: ["Go", "WebSockets", "PostgreSQL", "Redis", "Prometheus", "Docker", "Flutter"],
+    links: { github: "https://github.com/nabinbogati/callbreak-multiplayer" },
+  },
+];
 
 export const projects: Project[] = [
   {
-    name: "Callbreak at Teslatech",
-    kind: "Professional · Teslatech",
+    name: "Karpathy agent pipeline",
+    kind: "Personal · AI tooling",
     summary:
-      "The backend for Teslatech's online multiplayer Callbreak, built for high availability and low latency with thousands of concurrent players.",
-    stack: ["Python", "FastAPI", "aiohttp", "WebSockets", "PostgreSQL", "Redis"],
-    links: { live: "https://play.google.com/store/apps/details?id=io.teslatech.callbreak&hl=en" },
+      "Three agent skills that change how coding agents work. intent-architect turns a vague request into a compact spec or a question. expert-karpathy builds it with small, surgical changes. karpathy-pipeline chains the two and ends with an honest production-ready check.",
+    stack: ["Agent Skills", "Claude Code", "Prompt design"],
+    links: { github: "https://github.com/nabinbogati/SKILLS" },
+  },
+  {
+    name: "Commit message agent skill",
+    kind: "Personal · AI tooling",
+    summary:
+      "An agent skill that teaches Claude my Conventional Commits standard, so any commit it writes or reviews follows the same types, scopes and subject rules I do.",
+    stack: ["Agent Skills", "Claude", "Git"],
+    links: { github: "https://github.com/nabinbogati/SKILLS" },
   },
   {
     name: "Connecting Dots",
@@ -266,20 +302,73 @@ export const projects: Project[] = [
     links: { live: "https://play.google.com/store/apps/details?id=com.nabinbogati.connecting_dots" },
   },
   {
-    name: "Commit message agent skill",
-    kind: "Personal · AI tooling",
-    summary:
-      "An agent skill that teaches Claude my Conventional Commits standard, so any commit it writes or reviews follows the same types, scopes and subject rules I do.",
-    stack: ["Claude", "Agent Skills", "Git"],
-    links: { github: "https://github.com/nabinbogati/skills" },
-  },
-  {
     name: "Dotfiles",
     kind: "Personal · Open source",
     summary:
       "Version-controlled configuration for Bash, Vim and Git, so I can reproduce my development environment on any new machine.",
     stack: ["Shell", "Vim", "Git", "Linux"],
     links: { github: "https://github.com/nabinbogati/dotfiles" },
+  },
+];
+
+export type TerminalTone = "plain" | "dim" | "accent" | "ok";
+
+/** A typed command, or an output line made of coloured parts. */
+export type TerminalLine = { cmd: string } | { out: [text: string, tone?: TerminalTone][] };
+
+/** An illustrative run of my agent pipeline, typed out in the Agents section's terminal. */
+export const agentSession: TerminalLine[] = [
+  { cmd: 'claude "add rate limiting"' },
+  { out: [["◇ recall  ", "accent"], ["hindsight · codebase-memory"]] },
+  { out: [["  → past decisions + call graph loaded", "dim"]] },
+  { out: [["◇ clarify ", "accent"], ["intent-architect"]] },
+  { out: [["  TARGET_FILES ", "dim"], ["api/limits.py, routes.py"]] },
+  { out: [["  DO           ", "dim"], ["token bucket per key, Redis"]] },
+  { out: [["  DO_NOT       ", "dim"], ["touch auth, add deps"]] },
+  { out: [["◇ build   ", "accent"], ["expert-karpathy"]] },
+  { out: [["  → 2 files changed, +48 −3", "dim"]] },
+  { out: [["◇ judge   ", "accent"], ["self-review"]] },
+  { out: [["  ✓ Production-ready? Yes", "ok"]] },
+];
+
+/** The local AI lab panel in the Agents section, and the hero terminal's `lab` command. */
+export const localLab = {
+  vram: "8–12 GB",
+  runtimes: ["llama.cpp", "Strata", "Colibri"],
+  harnesses: [
+    { id: "claude-code", name: "Claude Code" },
+    { id: "dsh", name: "dsh", note: "DeepSeek harness" },
+    { id: "hermes-agent", name: "Hermes Agent" },
+    { id: "pi", name: "Pi" },
+  ],
+  questions: [
+    "How far can a small local model go as a coding agent on a consumer GPU?",
+    "Same task, different harness: where does each one shine, and where does it break?",
+    "Which new runtimes, models and agent tools from the community hold up under real work?",
+  ],
+};
+
+export interface AgentPractice {
+  title: string;
+  text: string;
+}
+
+export const agentPractices: AgentPractice[] = [
+  {
+    title: "Skills as code",
+    text: "Agent behaviour lives in versioned skill files with clear triggers, reviewed and improved like any other code.",
+  },
+  {
+    title: "Memory & context",
+    text: "Long-term memory with Hindsight, plus codebase-memory MCP for structure, so agents start each task knowing the project.",
+  },
+  {
+    title: "Open models, small GPUs",
+    text: "I run open-weight models locally on 8–12 GB consumer GPUs: a realistic budget that shows what local agents can really do today.",
+  },
+  {
+    title: "Guardrails over vibes",
+    text: "Ask instead of guessing, keep scope tight, keep diffs small, and judge the result honestly. That's what makes an agent's work shippable.",
   },
 ];
 

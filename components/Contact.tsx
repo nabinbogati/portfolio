@@ -34,7 +34,7 @@ const Contact: React.FC = () => {
         description="Questions about my work, a backend problem worth talking through, or just a hello. My inbox is open."
       >
         <div className="grid gap-6 lg:grid-cols-3">
-          <div className="rounded-2xl border border-zinc-200 bg-white p-6 sm:p-8 lg:col-span-2 dark:border-zinc-800 dark:bg-zinc-900/50">
+          <div className="spotlight rounded-2xl border border-zinc-200 bg-white p-6 sm:p-8 lg:col-span-2 dark:border-zinc-800 dark:bg-zinc-900/50">
             <p className="font-mono text-xs uppercase tracking-wider text-zinc-500">Email</p>
             <a
               href={`mailto:${profile.email}`}
@@ -67,7 +67,7 @@ const Contact: React.FC = () => {
                   target={external ? "_blank" : undefined}
                   rel={external ? "noopener noreferrer" : undefined}
                   download={external ? undefined : "NabinBogati.pdf"}
-                  className="flex items-center justify-between rounded-2xl border border-zinc-200 bg-white px-5 py-4 text-zinc-700 transition-colors hover:border-zinc-300 hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-300 dark:hover:border-zinc-700 dark:hover:text-white"
+                  className="flex items-center justify-between spotlight rounded-2xl border border-zinc-200 bg-white px-5 py-4 text-zinc-700 transition-colors hover:border-zinc-300 hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-300 dark:hover:border-zinc-700 dark:hover:text-white"
                 >
                   <span className="flex items-center gap-3 font-medium">
                     <Icon className="h-5 w-5" />
