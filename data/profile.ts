@@ -21,6 +21,14 @@ export const profile = {
 
 export const yearsOfExperience = yearsSince(profile.careerStart);
 
+/** Hero figures. The Callbreak ones come from the "Load testing" section of its backend README. */
+export const heroStats: { value: number; decimals?: number; unit: string; label: string }[] = [
+  { value: yearsOfExperience, unit: "+", label: "years in production" },
+  { value: 800, unit: "", label: "concurrent players" },
+  { value: 625, unit: " µs", label: "median move" },
+  { value: 13.6, decimals: 1, unit: " ms", label: "p99 move" },
+];
+
 export const intro = `For ${yearsOfExperience}+ years I've designed, built and run backends end to end: async Python and Go services, real-time WebSocket systems, scheduled data pipelines, PostgreSQL and Redis, and the Linux servers underneath. Now I'm making AI agents a disciplined part of how that software gets built.`;
 
 export interface StackLayer {

@@ -3,6 +3,7 @@ import { Section, Theme } from "../types";
 import { profile } from "../data/profile";
 import { useActiveSection } from "../hooks/useActiveSection";
 import ThemeToggle from "./ThemeToggle";
+import HudStatus from "./HudStatus";
 import { MenuIcon } from "./icons/MenuIcon";
 import { CloseIcon } from "./icons/CloseIcon";
 
@@ -74,6 +75,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
             ))}
           </ul>
           <span className="mx-3 hidden h-5 w-px bg-zinc-200 lg:block dark:bg-zinc-800" />
+          <HudStatus className="mr-2 hidden xl:flex" />
           <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
           <button
             onClick={() => setMenuOpen((open) => !open)}

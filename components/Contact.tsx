@@ -88,7 +88,7 @@ const Contact: React.FC = () => {
           <p>
             © {new Date().getFullYear()} {profile.name} · {profile.location}
           </p>
-          <p className="font-mono text-xs">built with React, TypeScript &amp; Tailwind CSS</p>
+          <p className="font-mono text-xs">built with React, TypeScript, Tailwind CSS &amp; three.js</p>
         </div>
       </footer>
     </>

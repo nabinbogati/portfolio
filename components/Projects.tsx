@@ -40,7 +40,7 @@ const Stack: React.FC<{ items: string[] }> = ({ items }) => (
 );
 
 const FeaturedProject: React.FC<{ project: Project }> = ({ project }) => (
-  <article className="grid gap-6 spotlight rounded-2xl border border-zinc-200 bg-white p-6 sm:p-8 lg:grid-cols-2 lg:gap-10 dark:border-zinc-800 dark:bg-zinc-900/50">
+  <article data-tilt className="grid gap-6 spotlight rounded-2xl transition-transform duration-300 ease-out border border-zinc-200 bg-white p-6 sm:p-8 lg:grid-cols-2 lg:gap-10 dark:border-zinc-800 dark:bg-zinc-900/50">
     <div className="flex flex-col">
       <div className="flex items-center gap-4">
         {project.icon && (
@@ -87,7 +87,7 @@ const FeaturedProject: React.FC<{ project: Project }> = ({ project }) => (
 );
 
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => (
-  <article className="flex flex-col spotlight rounded-2xl border border-zinc-200 bg-white p-6 transition-[border-color,translate] duration-300 hover:-translate-y-0.5 hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-700">
+  <article data-tilt className="flex flex-col spotlight rounded-2xl border border-zinc-200 bg-white p-6 transition-[border-color,translate,transform] duration-300 hover:-translate-y-0.5 hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-700">
     <div className="flex flex-wrap items-center justify-between gap-2">
       <p className="font-mono text-xs text-zinc-500">{project.kind}</p>
       {project.status && (

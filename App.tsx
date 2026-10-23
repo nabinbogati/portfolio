@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Theme } from './types';
 import Header from './components/Header';
-import NeuralNet from './components/NeuralNet';
+import Backdrop from './components/Backdrop';
+import BootLoader from './components/BootLoader';
+import Cursor from './components/Cursor';
 import Hero from './components/Hero';
 import Work from './components/Work';
 import Agents from './components/Agents';
@@ -38,7 +40,9 @@ const App: React.FC = () => {
 
   return (
     <div className="isolate min-h-screen font-sans">
-      <NeuralNet />
+      <BootLoader />
+      <Backdrop />
+      <Cursor />
       <Header theme={theme} toggleTheme={toggleTheme} />
       <main>
         <Hero />

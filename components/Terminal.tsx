@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { TerminalLine, TerminalTone } from "../data/profile";
+import { booted } from "../lib/boot";
 
 const toneClass: Record<TerminalTone, string> = {
   plain: "text-zinc-200",
@@ -80,17 +81,26 @@ const Terminal: React.FC<TerminalProps> = ({ title, prompt, lines, onCommand, co
       setLine(lines.length);
       return;
     }
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setStarted(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.4 },
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
+    let observer: IntersectionObserver | undefined;
+    let cancelled = false;
+    // Hold the session until the boot screen is out of the way, or it plays unseen behind it.
+    booted.then(() => {
+      if (cancelled) return;
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setStarted(true);
+            observer?.disconnect();
+          }
+        },
+        { threshold: 0.4 },
+      );
+      if (ref.current) observer.observe(ref.current);
+    });
+    return () => {
+      cancelled = true;
+      observer?.disconnect();
+    };
   }, [lines.length]);
 
   useEffect(() => {

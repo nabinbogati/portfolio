@@ -1,6 +1,8 @@
 import React from "react";
-import { intro, profile } from "../data/profile";
+import { heroStats, intro, profile } from "../data/profile";
 import StackDiagram from "./StackDiagram";
+import CountUp from "./CountUp";
+import LiveFeed from "./LiveFeed";
 import { CvIcon } from "./icons/CvIcon";
 import { EmailIcon } from "./icons/EmailIcon";
 import { GitHubIcon } from "./icons/GitHubIcon";
@@ -89,6 +91,22 @@ const Hero: React.FC = () => {
 
         <div className="animate-fade-in [animation-delay:150ms] lg:col-span-5">
           <StackDiagram />
+          <div className="mt-4 overflow-hidden rounded-xl border border-zinc-200 bg-white/70 backdrop-blur dark:border-zinc-800 dark:bg-zinc-900/60">
+            <dl className="grid grid-cols-2 divide-zinc-200 sm:grid-cols-4 sm:divide-x dark:divide-zinc-800">
+              {heroStats.map(({ value, decimals, unit, label }) => (
+                <div key={label} className="px-4 py-3">
+                  <dd className="whitespace-nowrap font-mono text-lg font-semibold text-accent-700 tabular-nums dark:text-accent-400">
+                    <CountUp to={value} decimals={decimals} />
+                    <span className="text-sm">{unit}</span>
+                  </dd>
+                  <dt className="mt-0.5 text-xs text-zinc-500">{label}</dt>
+                </div>
+              ))}
+            </dl>
+            <div className="border-t border-zinc-200 px-4 py-2 dark:border-zinc-800">
+              <LiveFeed />
+            </div>
+          </div>
         </div>
       </div>
     </section>
