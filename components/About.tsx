@@ -36,9 +36,9 @@ const About: React.FC = () => {
             return (
               <li
                 key={hobby.name}
-                className="flex items-center gap-3 rounded-xl border border-zinc-200 px-4 py-3 text-sm text-zinc-700 dark:border-zinc-800 dark:text-zinc-300"
+                className="group spotlight flex items-center gap-3 rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-700 transition-colors hover:border-zinc-300 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-300 dark:hover:border-zinc-700 dark:hover:text-white"
               >
-                <Icon className="h-5 w-5 flex-shrink-0 text-zinc-400" />
+                <Icon className="h-5 w-5 flex-shrink-0 text-zinc-400 transition-colors group-hover:text-accent-600 dark:group-hover:text-accent-400" />
                 {hobby.name}
               </li>
             );
